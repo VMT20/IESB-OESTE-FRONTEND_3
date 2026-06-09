@@ -1,0 +1,58 @@
+/* src/components/DefaultButton/styles.module.css */
+
+/* Estilo Base do Botão */
+.button {
+  /* =========================================================
+     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
+     ========================================================= */
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24rem;
+  padding: 0.8rem;
+  margin: 4.8rem 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  /* =========================================================
+     VISUAL EDGERUNNERS: Cantos Retos e Fonte de Terminal
+     ========================================================= */
+  border-radius: 0; /* Mudado de 0.8rem para 0: design militar/industrial */
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Dica de CSS: Estiliza qualquer ícone SVG que caia dentro do botão */
+.button svg {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+/* Efeito de Hover escurecendo o botão dinamicamente */
+.button:hover {
+  filter: brightness(90%);
+}
+
+/* --- Classes Modificadoras de Cor + Injeção de Neon Glow --- */
+.green {
+  background: var(--primary); /* Ativa o Amarelo Cyberpunk do teu theme.css */
+  color: var(--text-over-primary);
+  box-shadow: 0 0 10px rgba(252, 238, 10, 0.3);
+}
+
+.green:hover {
+  box-shadow: 0 0 20px rgba(252, 238, 10, 0.6); /* Brilho intenso ao passar o rato */
+}
+
+.red {
+  background: var(--error); /* Vermelho Alerta para o estado de Stop */
+  color: var(--text-over-error);
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+}
+
+.red:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.6); /* Brilho de sobrecarga no Stop */
+}

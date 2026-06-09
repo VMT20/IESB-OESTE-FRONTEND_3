@@ -1,0 +1,12 @@
+.heading {
+  background-color: brown;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  /* Ativando o Flexbox para alinhar os filhos lado a lado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem; /* Cria um espaçamento de 24px entre o texto e o botão */
+}
