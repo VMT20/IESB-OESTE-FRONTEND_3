@@ -1,0 +1,54 @@
+/* src/components/Cycles/styles.module.css */
+
+/* Container principal (Texto + Bolinhas) */
+.cycles {
+  /* =========================================================
+     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
+     ========================================================= */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+/* Container que segura as bolinhas lado a lado */
+.cycleDots {
+  /* =========================================================
+     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
+     ========================================================= */
+  display: flex;
+  gap: 0.8rem;
+}
+
+/* A bolinha base */
+.cycleDot {
+  /* =========================================================
+     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
+     ========================================================= */
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--primary);
+
+  /* =========================================================
+     VISUAL EDGERUNNERS: Slots Quadrados de Implante
+     ========================================================= */
+  border-radius: 0; /* Troca o 50% original por 0: cantos secos e industriais */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Cores específicas consumindo nosso tema global + Injeção de Neon Glow */
+.workTime {
+  background: var(--warning);
+  box-shadow: 0 0 12px var(--warning); /* Faz o quadrado de foco brilhar em Amarelo */
+}
+
+.shortBreakTime {
+  background: var(--primary);
+  box-shadow: 0 0 12px var(--primary); /* Faz o descanso curto brilhar na cor principal */
+}
+
+.longBreakTime {
+  background: var(--info);
+  box-shadow: 0 0 12px var(--info); /* Faz o descanso longo brilhar em Ciano Neon */
+}
