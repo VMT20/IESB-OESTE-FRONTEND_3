@@ -1,0 +1,23 @@
+/* src/components/CountDown/styles.module.css */
+
+.container {
+  /* =========================================================
+     ESTRUTURA ORIGINAL DO PROFESSOR (MANTIDA INTACTA!) 
+     ========================================================= */
+  font-size: clamp(8rem, 30vw, 16rem);
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.3;
+
+  /* =========================================================
+     VISUAL EDGERUNNERS (O cromo do Sandevistan)
+     ========================================================= */
+  font-family: 'Share Tech Mono', monospace; /* Fonte de ecrã tático */
+  color: var(--primary);                     /* Puxa o Amarelo do theme.css */
+  
+  /* Efeito de brilho neon forte nos números */
+  text-shadow: 0 0 8px rgba(252, 238, 10, 0.6), 
+               0 0 18px rgba(252, 238, 10, 0.4),
+               0 0 30px rgba(252, 238, 10, 0.1);
+  letter-spacing: 0.03em;
+}
