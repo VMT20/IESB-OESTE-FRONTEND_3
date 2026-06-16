@@ -10,6 +10,7 @@ import { getTaskStatus } from '../../utils/getTaskStatus';
 import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
 import { TaskActionTypes } from '../../contexts/TaskContext/TaskActions';
 import { showMessage } from '../../adapters/showMessage';
+import * as api from '../../services/api'; // 🚀 Importando a API
 
 import styles from './styles.module.css';
 
@@ -18,7 +19,6 @@ export function History() {
   const [confirmClearHistory, setConfirmClearHistory] = useState(false);
   const hasTasks = state.tasks.length > 0;
 
-  // 🎯 Atualiza o título da aba para o Histórico
   useEffect(() => {
     document.title = 'Histórico - Chronos Pomodoro';
   }, []);
@@ -42,10 +42,26 @@ export function History() {
     }));
   }, [state.tasks]);
 
+  // 🚀 Modificado para chamar a API e limpar com a action correta (Item 8.4)
   useEffect(() => {
     if (!confirmClearHistory) return;
     setConfirmClearHistory(false);
-    dispatch({ type: TaskActionTypes.RESET_STATE });
+
+    async function deleteHistoryFromAPI() {
+      try {
+        // 1. Limpar histórico chama DELETE /tasks
+        await api.clearTasks();
+
+        // 2. Estado local é limpo com a action CLEAR_TASKS
+        dispatch({ type: TaskActionTypes.CLEAR_TASKS });
+        showMessage.success('Histórico apagado com sucesso!');
+      } catch (error) {
+        console.error('Erro ao deletar histórico na API:', error);
+        showMessage.error('Não foi possível apagar o histórico na API.');
+      }
+    }
+
+    deleteHistoryFromAPI();
   }, [confirmClearHistory, dispatch]);
 
   useEffect(() => {

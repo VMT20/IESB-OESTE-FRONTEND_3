@@ -2,14 +2,15 @@ import type { TaskStateModel } from '../../models/TaskStateModel';
 import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { initialTaskState } from './initialTaskState';
-import { TaskActionTypes, type TaskActionModel } from './TaskActions';
+import { TaskActionTypes } from './TaskActions';
 
-export function taskReducer(state: TaskStateModel, action: TaskActionModel): TaskStateModel {
+export function taskReducer(state: TaskStateModel, action: any): TaskStateModel {
   switch (action.type) {
+    case 'START_TASK':
     case TaskActionTypes.START_TASK: {
       const newTask = action.payload;
       const nextCycle = getNextCycle(state.currentCycle);
-      const secondsRemaining = newTask.duration * 60;
+      const secondsRemaining = Number(newTask.duration) * 60;
 
       return {
         ...state,
@@ -21,6 +22,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel): Tas
       };
     }
 
+    case 'INTERRUPT_TASK':
     case TaskActionTypes.INTERRUPT_TASK: {
       return {
         ...state,
@@ -36,6 +38,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel): Tas
       };
     }
 
+    case 'COUNT_DOWN':
     case TaskActionTypes.COUNT_DOWN: {
       const nextSeconds = action.payload.secondsRemaining;
       return {
@@ -45,6 +48,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel): Tas
       };
     }
 
+    case 'COMPLETE_TASK':
     case TaskActionTypes.COMPLETE_TASK: {
       return {
         ...state,
@@ -60,15 +64,34 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel): Tas
       };
     }
 
+    case 'RESET_STATE':
     case TaskActionTypes.RESET_STATE: {
       return { ...initialTaskState };
     }
 
-    // 🎯 Novo caso adicionado seguindo o slide oficial para atualizar os tempos globais
+    case 'CHANGE_SETTINGS':
     case TaskActionTypes.CHANGE_SETTINGS: {
       return {
         ...state,
         config: { ...action.payload },
+      };
+    }
+
+    case 'CLEAR_TASKS':
+    case TaskActionTypes.CLEAR_TASKS: {
+      return {
+        ...state,
+        tasks: [],
+        currentCycle: 0, // 👈 A mágica das bolinhas sumindo aqui!
+      };
+    }
+
+    case 'HYDRATE_TASKS':
+    case TaskActionTypes.HYDRATE_TASKS: {
+      return {
+        ...state,
+        tasks: action.payload.tasks,
+        config: { ...action.payload.settings },
       };
     }
 

@@ -1,76 +1,78 @@
 :root {
-  /* Escala de Cinza (Fundo escuro, texto claro - Vibe Night City) */
-  --gray-100: #f4f4f5;
-  --gray-200: #e4e4e7;
-  --gray-300: #a1a1aa;
-  --gray-400: #71717a;
-  --gray-500: #52525b;
-  --gray-600: #3f3f46;
-  --gray-700: #27272a;
-  --gray-800: #18181b;
-  --gray-900: #09090b;
+  /* 🌸 ESCALA DE CINZAS (Fundo cereja escuro para o modo Dark) */
+  --gray-100: #fdfafb; /* Quase branco (Textos principais) */
+  --gray-200: #f0dee5;
+  --gray-300: #d9b8c4; /* Textos secundários */
+  --gray-400: #a67c8e; /* 🎯 Cor das bolinhas inativas no Dark! */
+  --gray-500: #7a4f63;
+  --gray-600: #542b3d;
+  --gray-700: #361724;
+  --gray-800: #1f0b13; /* Fundo de inputs e cards */
+  --gray-900: #0f0509; /* Fundo geral da tela (Quase preto) */
 
-  /* Cores Principais (David Martinez Jacket) */
-  --primary-light: #fdf457;
-  --primary: #fcee0a; /* Amarelo da Jaqueta */
-  --primary-dark: #bdae00;
+  /* 🌸 CORES PRINCIPAIS (Sakura Pink) */
+  --primary-light: #ff8fa3;
+  --primary: #ff4d6d;
+  --primary-dark: #c9184a;
 
-  --link-color: #39ff14; /* Verde Neon da Gola/Logo */
-  --link-hover: #2db80d;
+  /* LINKS */
+  --link-color: #ff4d6d;
+  --link-hover: #ff8fa3;
 
-  /* Status e Alertas */
-  --success: #39ff14; /* Verde Neon */
-  --warning: #ff8a00;
-  --error: #ff003c;   /* Vermelho Arasaka */
-  --info: #39ff14;    /* Verde Neon */
+  /* STATUS */
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #ef4444;
+  --info: #0ea5e9;
 
-  /* Contraste de Texto sobre as Cores */
-  --text-over-primary: #000000;
-  --text-over-primary-dark: #f4f4f5;
-  --text-over-primary-light: #000000;
-  --text-over-success: #000000; /* Texto preto sobre o verde neon para dar leitura */
-  --text-over-warning: #000000;
+  /* CONTRASTES (Cor do ícone dentro do botão) */
+  --text-over-primary: #ffffff;
+  --text-over-primary-dark: #ffffff;
+  --text-over-primary-light: #0f0509;
+  --text-over-success: #ffffff;
+  --text-over-warning: #0f0509;
   --text-over-error: #ffffff;
-  --text-over-info: #000000;
+  --text-over-info: #ffffff;
 
-  /* Textos e Estados */
-  --text-default: #f4f4f5;
-  --text-muted: #a1a1aa;
+  /* 🎯 VARIÁVEIS SEMÂNTICAS (O segredo do professor) */
+  --text-default: var(--gray-100);
+  --text-muted: var(--gray-300);
 
-  --disabled: #3f3f46;
-  --text-disabled: #71717a;
+  /* 🎯 AQUI ESTAVA O BUG DOS CÍRCULOS FANTASMAS! */
+  --disabled: var(--gray-400); 
+  --text-disabled: var(--gray-400);
 }
 
 /* Quando a tag :root (html) tiver o atributo data-theme='light' */
 :root[data-theme='light'] {
-  /* Inversão da Escala de Cinza (Fundo claro estilo laboratório da Arasaka) */
-  --gray-100: #09090b;
-  --gray-200: #18181b;
-  --gray-300: #27272a;
-  --gray-400: #3f3f46;
-  --gray-500: #52525b;
-  --gray-600: #71717a;
-  --gray-700: #a1a1aa;
-  --gray-800: #e4e4e7;
-  --gray-900: #f4f4f5; /* Fundo principal claro */
+  /* 🍓 ESCALA DE CINZAS INVERTIDA (Fundo claro e textos escuros) */
+  --gray-100: #0f0509; /* Textos principais super escuros */
+  --gray-200: #1f0b13;
+  --gray-300: #361724; /* Textos secundários */
+  --gray-400: #542b3d; /* 🎯 Cor das bolinhas inativas no Light! */
+  --gray-500: #7a4f63;
+  --gray-600: #a67c8e;
+  --gray-700: #d9b8c4;
+  --gray-800: #f4e1e8; /* Fundo de inputs e cards */
+  --gray-900: #fff5f8; /* Fundo geral da tela (Branco com toque morango) */
 
-  --text-default: #09090b;
-  --text-muted: #3f3f46;
+  /* SEMÂNTICAS ATUALIZADAS PARA O CLARO */
+  --text-default: var(--gray-100);
+  --text-muted: var(--gray-300);
 
-  /* =========================================================
-     🟢 TEMA CLARO DAVID MARTINEZ: Ativando o Verde EMS da Jaqueta
-     ========================================================= */
-  --primary: #00b34a;               /* Verde Neon ajustado para leitura perfeita no claro */
-  --primary-light: #00cc55;
-  --primary-dark: #008035;
-  --text-over-primary: #ffffff;     /* Texto branco dentro do botão verde */
+  --link-color: #c9184a;
+  --link-hover: #ff4d6d;
+}
 
-  --link-color: #00b34a; 
-  --link-hover: #008035;
-  
-  --success: #00b34a;
-  --warning: #ff8a00;
-  --error: #ff003c;                 /* Mantém o Vermelho de Alerta */
-  --text-over-error: #ffffff;
-  --info: #00b34a;
+/* ==========================================================================
+   RESET BÁSICO (Para garantir que a fonte pegue a cor semântica)
+   ========================================================================== */
+body {
+  background-color: var(--gray-900);
+  color: var(--text-default);
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--text-default);
 }

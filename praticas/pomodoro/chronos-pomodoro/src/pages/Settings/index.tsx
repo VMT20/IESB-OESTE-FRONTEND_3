@@ -9,6 +9,7 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { TaskActionTypes } from '../../contexts/TaskContext/TaskActions';
 import { showMessage } from '../../adapters/showMessage';
 import { useForm } from '../../hooks/useForm';
+import * as api from '../../services/api'; // 👈 Importando a API
 
 type SettingsFormValues = {
   workTime: number;
@@ -40,15 +41,26 @@ export function Settings() {
       longBreakTime: state.config.longBreakTime,
     },
     validationRules,
-    onSubmit: (formValues) => {
+    // 🚀 Transformado em async para lidar com a API
+    onSubmit: async (formValues) => {
       showMessage.dismiss();
 
-      dispatch({
-        type: TaskActionTypes.CHANGE_SETTINGS,
-        payload: formValues,
-      });
+      try {
+        // 1. Chama updateSettings(...) na API
+        await api.updateSettings(formValues);
 
-      showMessage.success('Configurações salvas');
+        // 2. Em sucesso: mantém atualização no estado global
+        dispatch({
+          type: TaskActionTypes.CHANGE_SETTINGS,
+          payload: formValues,
+        });
+
+        showMessage.success('Configurações salvas');
+      } catch (error) {
+        // 3. Em falha: mostra mensagem de erro
+        console.error('Erro ao salvar configurações:', error);
+        showMessage.error('Não foi possível salvar as configurações na API.');
+      }
     },
   });
 
@@ -61,7 +73,7 @@ export function Settings() {
       </Container>
 
       <Container>
-        <p style={{ textAlign: 'center', color: 'var(--gray-300)', marginBottom: '2rem' }}>
+        <p className="pageDescription">
           Modifique as configurações para tempo de foco, descanso curto e descanso longo.
         </p>
         <form onSubmit={handleSubmit} className="form">
@@ -74,7 +86,7 @@ export function Settings() {
               onChange={handleChange}
             />
             {errors.workTime && (
-              <span style={{ color: 'var(--red-500)', fontSize: '1.4rem', marginTop: '0.5rem', display: 'block' }}>
+              <span className="formError">
                 {errors.workTime}
               </span>
             )}
@@ -89,7 +101,7 @@ export function Settings() {
               onChange={handleChange}
             />
             {errors.shortBreakTime && (
-              <span style={{ color: 'var(--red-500)', fontSize: '1.4rem', marginTop: '0.5rem', display: 'block' }}>
+              <span className="formError">
                 {errors.shortBreakTime}
               </span>
             )}
@@ -104,7 +116,7 @@ export function Settings() {
               onChange={handleChange}
             />
             {errors.longBreakTime && (
-              <span style={{ color: 'var(--red-500)', fontSize: '1.4rem', marginTop: '0.5rem', display: 'block' }}>
+              <span className="formError">
                 {errors.longBreakTime}
               </span>
             )}

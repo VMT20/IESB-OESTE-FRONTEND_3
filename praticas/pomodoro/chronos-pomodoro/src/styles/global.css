@@ -1,44 +1,132 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Escala de cinzas — Dark: Preto com subtom de ferro e cinzas antigos */
+  --gray-100: #ece7da;
+  --gray-200: #cfc8b8;
+  --gray-300: #9a9488;
+  --gray-400: #5e5a54;
+  --gray-500: #3b3835;
+  --gray-600: #2a2826;
+  --gray-700: #1d1c1b;
+  --gray-800: #141414;
+  --gray-900: #0a0a0a;
+
+  /* Cores principais — Estandarte e Lacre de Cera */
+  --primary-light: #a11212;
+  --primary: #8b0000;
+  --primary-dark: #5f0000;
+
+  /* Links */
+  --link-color: #c9a227;
+  --link-hover: #e0bc4f;
+
+  /* Status */
+  --warning: #c9a227;
+  --success: #556b2f;
+  --info: #8c6d1f;
+  --error: #8b0000;
+
+  /* Contrastes */
+  --text-over-primary: #ece7da;
+  --text-over-primary-dark: #ece7da;
+  --text-over-primary-light: #ece7da;
+  --text-over-success: #ece7da;
+  --text-over-warning: #141414;
+  --text-over-error: #ffffff;
+  --text-over-info: #141414;
+
+  /* Semânticas */
+  --text-default: var(--gray-100);
+  --text-muted: var(--gray-300);
+  --disabled: var(--gray-400);
+  --text-disabled: var(--gray-500);
+
+  /* Fontes */
+  --font-display: 'Cinzel', serif;
+  --font-mono: 'Cormorant Garamond', serif;
+
+  /* Brilho das Chamas e Misticismo */
+  --neon-primary:  0 0 6px rgba(139, 0, 0, 0.45), 0 0 14px rgba(139, 0, 0, 0.2);
+  --neon-warning:  0 0 6px rgba(201, 162, 39, 0.35);
+  --neon-success:  0 0 6px rgba(85, 107, 47, 0.3);
+  --neon-info:     0 0 6px rgba(140, 109, 31, 0.3);
+
+  /* Timer — Fogo brilhando */
+  --timer-color: #ece7da;
+  --timer-glow:  0 0 6px rgba(236, 231, 218, 0.35), 0 0 14px rgba(139, 0, 0, 0.25), 0 0 28px rgba(139, 0, 0, 0.12);
+
+  --border-accent: 1px solid rgba(201, 162, 39, 0.18);
+
+  /* Textura de Tecido Rústico / Linhas de Monge */
+  --scanlines: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 14px,
+    rgba(201, 162, 39, 0.015) 14px,
+    rgba(201, 162, 39, 0.015) 15px
+  );
 }
 
-html {
-  font-size: 62.5%;
-}
+:root[data-theme='light'] {
+  /* Escala de cinzas — Light: Pergaminho Nobre Real */
+  --gray-100: #2b251f;
+  --gray-200: #413930;
+  --gray-300: #5c5246;
+  --gray-400: #7d7263;
+  --gray-500: #a89f8d;
+  --gray-600: #c5bdae;
+  --gray-700: #e2dacb;
+  --gray-800: #f1ebd9;
+  --gray-900: #fcf9f2;
 
-body {
-  /* =========================================================
-     VISUAL EDGERUNNERS: Fonte digital como principal, mantendo as do sistema como plano B
-     ========================================================= */
-  font-family: 
-    'Share Tech Mono', 
-    monospace,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    sans-serif;
-  font-size: 1.6rem; /* 16px */
-  background: var(--gray-900);
-  color: var(--text-default);
+  --text-default: var(--gray-100);
+  --text-muted: var(--gray-300);
+  --disabled: var(--gray-500);
+  --text-disabled: var(--gray-600);
 
-  /* =========================================================
-     ADICIONADO: Transição suave ao clicar no botão de tema
-     ========================================================= */
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+  /* Cores principais — Vermelho Império para Fundo Claro */
+  --primary-light: #c02626;
+  --primary: #9e1b1b;
+  --primary-dark: #701010;
 
-/* =========================================================
-   CLASSES ORIGINAIS DO PROFESSOR (MANTIDAS INTACTAS!)
-   ========================================================= */
-.container-fluid {
-  width: 100%;
+  --link-color: #9e1b1b;
+  --link-hover: #c02626;
+
+  /* Status Real */
+  --warning: #b58900;
+  --success: #4b6623;
+  --info: #7c6018;
+  --error: #9e1b1b;
+
+  --text-over-primary: #fcf9f2;
+  --text-over-primary-dark: #fcf9f2;
+  --text-over-primary-light: #fcf9f2;
+  --text-over-success: #fcf9f2;
+  --text-over-warning: #2b251f;
+  --text-over-error: #ffffff;
+  --text-over-info: #2b251f;
+
+  /* Brilhos sutis de tinta fresca */
+  --neon-primary: 0 0 4px rgba(158, 27, 27, 0.15);
+  --neon-warning: 0 0 4px rgba(163, 127, 19, 0.2);
+  --neon-success: 0 0 4px rgba(75, 102, 35, 0.15);
+  --neon-info:    0 0 4px rgba(124, 96, 24, 0.15);
+
+  /* Timer — Lacre Real */
+  --timer-color: var(--primary);
+  --timer-glow:  0 2px 4px rgba(158, 27, 27, 0.1), 0 0 10px rgba(158, 27, 27, 0.05);
+
+  --border-accent: 1px solid rgba(163, 127, 19, 0.25);
+
+  /* Pautas do pergaminho claras */
+  --scanlines: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 23px,
+    rgba(163, 127, 19, 0.03) 23px,
+    rgba(163, 127, 19, 0.03) 24px
+  );
 }
 
 .form {
@@ -47,13 +135,61 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 2.4rem;
+  width: 100%;
 }
 
-/* O mesmo alinhamento para o conteúdo interno de cada "linha" */
 .formRow {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: 0.8rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* Label do input ("task") */
+.formRow label {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Texto de info ("Descanso por 10min") */
+.formRow p,
+.formRow small {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.formRow strong {
+  color: var(--primary);
+  font-family: var(--font-display);
+  text-shadow: var(--neon-primary);
+}
+
+/* Mensagem de erro nos forms */
+.formError {
+  color: var(--error);
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+  display: block;
+  text-align: center;
+  text-shadow: 0 0 8px color-mix(in srgb, var(--error) 40%, transparent);
+}
+
+/* Descrição das páginas */
+.pageDescription {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
 }

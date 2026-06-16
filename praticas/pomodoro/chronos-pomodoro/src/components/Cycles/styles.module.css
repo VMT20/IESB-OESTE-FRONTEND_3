@@ -1,10 +1,4 @@
-/* src/components/Cycles/styles.module.css */
-
-/* Container principal (Texto + Bolinhas) */
 .cycles {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
-     ========================================================= */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,43 +6,53 @@
   gap: 1.6rem;
 }
 
-/* Container que segura as bolinhas lado a lado */
 .cycleDots {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
-     ========================================================= */
   display: flex;
-  gap: 0.8rem;
+  gap: 1.2rem;
+  align-items: center;
 }
 
-/* A bolinha base */
 .cycleDot {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
-     ========================================================= */
-  width: 2rem;
-  height: 2rem;
-  background-color: var(--primary);
-
-  /* =========================================================
-     VISUAL EDGERUNNERS: Slots Quadrados de Implante
-     ========================================================= */
-  border-radius: 0; /* Troca o 50% original por 0: cantos secos e industriais */
-  transition: all 0.2s ease-in-out;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--disabled);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid var(--border-accent);
+  position: relative;
 }
 
-/* Cores específicas consumindo nosso tema global + Injeção de Neon Glow */
+/* Foco — usa --warning (amarelo no dark, verde-amarelo no light) */
 .workTime {
   background: var(--warning);
-  box-shadow: 0 0 12px var(--warning); /* Faz o quadrado de foco brilhar em Amarelo */
+  box-shadow: var(--neon-warning);
+  transform: scale(1.2);
+  border: none;
 }
 
+/* Descanso curto — usa --success (dourado escuro / verde matrix) */
 .shortBreakTime {
-  background: var(--primary);
-  box-shadow: 0 0 12px var(--primary); /* Faz o descanso curto brilhar na cor principal */
+  background: var(--success);
+  box-shadow: var(--neon-success);
+  transform: scale(1.2);
+  border: none;
 }
 
+/* Descanso longo — usa --info (laranja neon / verde tóxico) com pulso */
 .longBreakTime {
   background: var(--info);
-  box-shadow: 0 0 12px var(--info); /* Faz o descanso longo brilhar em Ciano Neon */
+  box-shadow: var(--neon-info);
+  transform: scale(1.25);
+  border: none;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { box-shadow: var(--neon-info); }
+  50% {
+    box-shadow:
+      0 0 14px var(--info),
+      0 0 32px var(--info),
+      0 0 55px color-mix(in srgb, var(--info) 35%, transparent);
+  }
 }

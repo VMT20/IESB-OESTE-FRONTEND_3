@@ -1,48 +1,35 @@
-/* src/components/DefaultInput/styles.module.css */
-
 .input {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
-     ========================================================= */
   background-color: transparent;
   text-align: center;
   font-size: 1.8rem;
+  font-family: var(--font-mono);
   padding: 0.8rem;
   color: var(--text-default);
-  outline: none; /* Remove a borda padrão feia do navegador */
+  outline: none;
+  width: 100%;
+  max-width: 32rem;
+  display: block;
+  margin: 0 auto;
 
-  /* O truque do professor para evitar o "pulo" no layout */
   border: 0.2rem solid transparent;
-  border-bottom: 0.2rem solid var(--primary); /* Agora assume o Amarelo Edgerunners */
+  border-bottom: 0.2rem solid var(--primary);
 
-  /* Transição suave para quando o estado mudar */
-  transition: all 0.1s ease-in-out;
-
-  /* =========================================================
-     ADICIONADO: ESTILO DIGITAL CYBERPUNK
-     ========================================================= */
-  font-family: 'Share Tech Mono', monospace;
-  text-transform: uppercase; /* Transforma o texto em caixa alta (estilo terminal) */
+  transition: all 0.2s ease-in-out;
 }
 
-/* 🎯 Estado de Foco (Quando o usuário clica para digitar) */
 .input:focus {
-  border-radius: 0; /* Alterado de 0.8rem para 0: cantos retos industriais */
-  border: 0.2rem solid var(--link-color); /* Borda inteira assume o Ciano Neon */
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4); /* Brilho neon em volta do campo */
+  border-radius: 0.8rem;
+  border: 0.2rem solid var(--primary);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
-/* 🏷️ Texto de Ajuda (Placeholder) */
 .input::placeholder {
-  color: var(--gray-500);
+  color: var(--text-muted);
   font-size: 1.4rem;
   font-style: italic;
-  font-family: 'Share Tech Mono', monospace;
 }
 
-/* 🔒 Estado Desativado (Para quando o cronômetro estiver rodando) */
 .input:disabled {
   border-bottom: 0.2rem solid var(--disabled);
   color: var(--text-muted);
-  box-shadow: none; /* Remove o brilho quando estiver travado */
 }

@@ -1,9 +1,4 @@
-/* src/components/Menu/styles.module.css */
-
 .menu {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA 
-     ========================================================= */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,29 +6,30 @@
 }
 
 .menuLink {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA 
-     ========================================================= */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  background: var(--primary);
-  color: var(--text-over-primary);
-  transition: all 0.1s ease-in-out;
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 15%, transparent);
+  transition: all 0.2s ease-in-out;
   padding: 1.2rem;
-
-  /* =========================================================
-     VISUAL EDGERUNNERS: Cantos Quadrados de Matriz
-     ========================================================= */
-  border-radius: 0; /* Removido o 0.8rem original */
-  border: 1px solid transparent;
+  border-radius: 0.8rem;
 }
 
 .menuLink:hover {
-  filter: brightness(90%);
-  border: 1px solid var(--link-color); /* Cria uma moldura Ciano Neon no hover */
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+  border-color: var(--primary);
+  box-shadow: var(--neon-primary);
+}
+
+/* Botão ativo (tema atual selecionado) */
+.menuLink.active {
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  border-color: var(--primary);
+  box-shadow: var(--neon-primary);
 }
 
 .menuLink svg {

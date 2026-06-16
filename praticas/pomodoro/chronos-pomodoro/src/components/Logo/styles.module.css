@@ -1,9 +1,4 @@
-/* src/components/Logo/styles.module.css */
-
 .logo {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
-     ========================================================= */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,9 +7,6 @@
 }
 
 .logoLink {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA (Para não quebrar o layout!) 
-     ========================================================= */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,33 +15,15 @@
   gap: 0.4rem;
   font-size: 4.2rem;
   text-decoration: none;
-  color: var(--primary); /* Já assume o Amarelo do theme.css */
+  color: var(--primary);
   transition: all 0.1s ease-in-out;
-
-  /* =========================================================
-     VISUAL EDGERUNNERS: Alinhamento de Interface Cyber
-     ========================================================= */
-  font-family: 'Share Tech Mono', monospace; /* Fonte estilo terminal */
-  text-transform: uppercase;                 /* Nome do app em caixa alta */
-  letter-spacing: 0.05em;
 }
 
 .logoLink:hover {
   filter: brightness(80%);
 }
 
-/* 🎯 CORREÇÃO DO ÍCONE VERDE: Força o SVG a herdar o Amarelo Cyberpunk */
 .logoLink svg {
-  /* =========================================================
-     ESTRUTURA ORIGINAL MANTIDA 
-     ========================================================= */
   width: 6.4rem;
   height: 6.4rem;
-
-  /* =========================================================
-     ADICIONADO: Injeção de cor e brilho no Relógio 
-     ========================================================= */
-  stroke: var(--primary) !important; /* Força a linha do relógio a ficar amarela */
-  fill: transparent;                 /* Mantém o fundo dele invisível */
-  filter: drop-shadow(0 0 4px rgba(252, 238, 10, 0.5)); /* Leve brilho neon no ícone */
 }

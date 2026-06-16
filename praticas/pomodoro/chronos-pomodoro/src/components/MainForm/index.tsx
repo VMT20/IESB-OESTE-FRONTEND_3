@@ -7,9 +7,11 @@ import { Tips } from '../Tips';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
-import { TaskActionTypes } from '../../contexts/TaskContext/TaskActions';
 import { showMessage } from '../../adapters/showMessage';
-import type { TaskModel } from '../../models/TaskModel';
+import * as api from '../../services/api';
+
+// 🎵 Importando o áudio para tocar no clique
+import beepSound from '../../assets/audios/gravitational_beep.mp3';
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -18,10 +20,9 @@ export function MainForm() {
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
 
-  // 🎯 Captura o nome da última tarefa criada no array (Evita digitação repetitiva)
   const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
 
-  function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+  async function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     showMessage.dismiss();
 
@@ -34,32 +35,50 @@ export function MainForm() {
       return;
     }
 
-    const dynamicDuration = state.config[nextCycleType];
+    const dynamicDuration = state.config?.[nextCycleType] || 25;
 
-    const newTask: TaskModel = {
-      id: Date.now().toString(),
+    const newTask = {
+      id: String(Date.now()),
       name: taskName,
       duration: dynamicDuration,
       startDate: Date.now(),
       completedDate: null,
       interruptDate: null,
-      type: nextCycleType,
+      type: nextCycleType as any,
     };
 
-    dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
-    showMessage.success('Tarefa iniciada com sucesso!');
+    try {
+      await api.createTask(newTask);
+      dispatch({ type: 'START_TASK', payload: newTask });
+      showMessage.success('Tarefa iniciada com sucesso!');
+
+      // 🔊 Toca o som imediatamente após o clique!
+      const startAudio = new Audio(beepSound);
+      startAudio.play().catch(err => console.error('Erro no áudio de início:', err));
+
+    } catch (error) {
+      console.error('Erro ao criar tarefa na API:', error);
+      showMessage.error('Não foi possível iniciar a tarefa na API.');
+    }
   }
 
-  function handleInterruptTask() {
+  async function handleInterruptTask() {
+    if (!state.activeTask) return;
     showMessage.dismiss();
-    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
-    showMessage.error('Tarefa interrompida!');
+
+    try {
+      await api.interruptTask(state.activeTask.id, Date.now());
+    } catch (error) {
+      console.warn('A tarefa já não existia na API, forçando interrupção local...');
+    } finally {
+      dispatch({ type: 'INTERRUPT_TASK' });
+      showMessage.error('Tarefa interrompida!');
+    }
   }
 
   return (
-    <form onSubmit={handleCreateNewTask} className="form" action="">
+    <form onSubmit={handleCreateNewTask} className="form">
       <div className="formRow">
-        {/* 🎯 Injetado o defaultValue com o nome da última atividade */}
         <DefaultInput
           ref={taskNameInput}
           labelText="task"
@@ -68,6 +87,7 @@ export function MainForm() {
           placeholder="No que você vai trabalhar agora?"
           disabled={!!state.activeTask}
           defaultValue={lastTaskName}
+          autoComplete="off"
         />
       </div>
 
