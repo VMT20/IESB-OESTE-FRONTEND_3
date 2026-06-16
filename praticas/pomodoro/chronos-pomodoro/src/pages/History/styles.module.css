@@ -1,0 +1,51 @@
+.buttonContainer button {
+  min-width: auto;
+  margin: 0;
+  padding: 1rem;
+}
+
+.buttonContainer button svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.responsiveTable {
+  overflow-x: auto;
+  border-radius: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+.responsiveTable table {
+  width: 100%;
+  min-width: 64rem;
+  font-size: 1.6rem;
+  font-family: var(--font-mono);
+  border-collapse: collapse;
+}
+
+.responsiveTable th {
+  background-color: color-mix(in srgb, var(--primary) 12%, var(--gray-800));
+  color: var(--primary);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: var(--neon-primary);
+}
+
+.responsiveTable td {
+  background-color: var(--gray-800);
+  color: var(--text-default);
+}
+
+.responsiveTable th,
+.responsiveTable td {
+  border-bottom: 0.1rem solid color-mix(in srgb, var(--primary) 15%, transparent);
+  text-align: left;
+  padding: 1.6rem;
+}
+
+.responsiveTable tr:hover td {
+  background-color: color-mix(in srgb, var(--primary) 6%, var(--gray-800));
+}

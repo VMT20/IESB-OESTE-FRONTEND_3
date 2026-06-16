@@ -1,0 +1,78 @@
+:root {
+  /* 🌸 ESCALA DE CINZAS (Fundo cereja escuro para o modo Dark) */
+  --gray-100: #fdfafb; /* Quase branco (Textos principais) */
+  --gray-200: #f0dee5;
+  --gray-300: #d9b8c4; /* Textos secundários */
+  --gray-400: #a67c8e; /* 🎯 Cor das bolinhas inativas no Dark! */
+  --gray-500: #7a4f63;
+  --gray-600: #542b3d;
+  --gray-700: #361724;
+  --gray-800: #1f0b13; /* Fundo de inputs e cards */
+  --gray-900: #0f0509; /* Fundo geral da tela (Quase preto) */
+
+  /* 🌸 CORES PRINCIPAIS (Sakura Pink) */
+  --primary-light: #ff8fa3;
+  --primary: #ff4d6d;
+  --primary-dark: #c9184a;
+
+  /* LINKS */
+  --link-color: #ff4d6d;
+  --link-hover: #ff8fa3;
+
+  /* STATUS */
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #ef4444;
+  --info: #0ea5e9;
+
+  /* CONTRASTES (Cor do ícone dentro do botão) */
+  --text-over-primary: #ffffff;
+  --text-over-primary-dark: #ffffff;
+  --text-over-primary-light: #0f0509;
+  --text-over-success: #ffffff;
+  --text-over-warning: #0f0509;
+  --text-over-error: #ffffff;
+  --text-over-info: #ffffff;
+
+  /* 🎯 VARIÁVEIS SEMÂNTICAS (O segredo do professor) */
+  --text-default: var(--gray-100);
+  --text-muted: var(--gray-300);
+
+  /* 🎯 AQUI ESTAVA O BUG DOS CÍRCULOS FANTASMAS! */
+  --disabled: var(--gray-400); 
+  --text-disabled: var(--gray-400);
+}
+
+/* Quando a tag :root (html) tiver o atributo data-theme='light' */
+:root[data-theme='light'] {
+  /* 🍓 ESCALA DE CINZAS INVERTIDA (Fundo claro e textos escuros) */
+  --gray-100: #0f0509; /* Textos principais super escuros */
+  --gray-200: #1f0b13;
+  --gray-300: #361724; /* Textos secundários */
+  --gray-400: #542b3d; /* 🎯 Cor das bolinhas inativas no Light! */
+  --gray-500: #7a4f63;
+  --gray-600: #a67c8e;
+  --gray-700: #d9b8c4;
+  --gray-800: #f4e1e8; /* Fundo de inputs e cards */
+  --gray-900: #fff5f8; /* Fundo geral da tela (Branco com toque morango) */
+
+  /* SEMÂNTICAS ATUALIZADAS PARA O CLARO */
+  --text-default: var(--gray-100);
+  --text-muted: var(--gray-300);
+
+  --link-color: #c9184a;
+  --link-hover: #ff4d6d;
+}
+
+/* ==========================================================================
+   RESET BÁSICO (Para garantir que a fonte pegue a cor semântica)
+   ========================================================================== */
+body {
+  background-color: var(--gray-900);
+  color: var(--text-default);
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--text-default);
+}
