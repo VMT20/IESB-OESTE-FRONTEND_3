@@ -1,0 +1,58 @@
+.cycles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+.cycleDots {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.cycleDot {
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--disabled);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid var(--border-accent);
+  position: relative;
+}
+
+/* Foco — usa --warning (amarelo no dark, verde-amarelo no light) */
+.workTime {
+  background: var(--warning);
+  box-shadow: var(--neon-warning);
+  transform: scale(1.2);
+  border: none;
+}
+
+/* Descanso curto — usa --success (dourado escuro / verde matrix) */
+.shortBreakTime {
+  background: var(--success);
+  box-shadow: var(--neon-success);
+  transform: scale(1.2);
+  border: none;
+}
+
+/* Descanso longo — usa --info (laranja neon / verde tóxico) com pulso */
+.longBreakTime {
+  background: var(--info);
+  box-shadow: var(--neon-info);
+  transform: scale(1.25);
+  border: none;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { box-shadow: var(--neon-info); }
+  50% {
+    box-shadow:
+      0 0 14px var(--info),
+      0 0 32px var(--info),
+      0 0 55px color-mix(in srgb, var(--info) 35%, transparent);
+  }
+}
