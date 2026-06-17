@@ -1,0 +1,8 @@
+.container {
+  max-width: 98rem; /* Equivale a 980px */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.content {
+  padding: 3.2rem; /* Adiciona o respiro de 32px */
+}

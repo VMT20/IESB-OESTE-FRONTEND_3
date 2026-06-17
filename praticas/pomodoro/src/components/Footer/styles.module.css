@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  flex-direction: column; /* Empilha os links um embaixo do outro */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  gap: 1.6rem;
+}
+
+.footer a {
+  color: var(--text-muted); /* Cor mais apagadinha do nosso design system */
+  text-decoration: none; /* Remove o sublinhado padrão feio de links */
+}
+
+/* Feedback visual interativo quando passa o mouse */
+.footer a:hover {
+  color: var(--text-muted);
+  text-decoration: underline; /* Devolve o sublinhado de forma elegante */
+}
